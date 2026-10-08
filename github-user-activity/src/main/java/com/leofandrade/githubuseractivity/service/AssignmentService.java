@@ -27,10 +27,10 @@ public class AssignmentService {
             if (keyValueObject[0].equals("payload")) {
 
                 ArrayList<String> payloadValue = parser.stringObjectSeparator(keyValueObject[1]);
-
+            
                 for (int i = 0; i < payloadValue.size(); i++) {
                     String[] keyResult = parser.splitKeyValue(payloadValue.get(i));
-
+                    
                     if (keyResult[0].equals("action")) {
                         payload = keyResult[1];
                     }
