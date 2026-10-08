@@ -1,4 +1,5 @@
 package com.leofandrade.githubuseractivity.service;
+
 import java.util.ArrayList;
 import com.leofandrade.githubuseractivity.dto.GitHubEventDto;
 
@@ -9,9 +10,9 @@ public class AssignmentService {
         String type = "";
         String repoName = "";
         String payload = "";
-        stringList = stringList.substring(1, stringList.length()-1);
+        stringList = stringList.substring(1, stringList.length() - 1);
         ArrayList<String> separatedList = parser.stringObjectSeparator(stringList);
-        
+
         for (String object : separatedList) {
 
             String[] keyValueObject = parser.splitKeyValue(object);
@@ -25,14 +26,15 @@ public class AssignmentService {
             }
 
             if (keyValueObject[0].equals("payload")) {
+                String payloadValue = keyValueObject[1].replaceAll("[{}\\[\\]]", "").trim();
 
-                ArrayList<String> payloadValue = parser.stringObjectSeparator(keyValueObject[1]);
-            
-                for (int i = 0; i < payloadValue.size(); i++) {
-                    String[] keyResult = parser.splitKeyValue(payloadValue.get(i));
-                    
-                    if (keyResult[0].equals("action")) {
-                        payload = keyResult[1];
+                if (!payloadValue.isEmpty()) {
+                    for (String item : parser.stringObjectSeparator(payloadValue)) {
+                        String[] keyResult = parser.splitKeyValue(item);
+
+                        if (keyResult[0].equals("action")) {
+                            payload = keyResult[1];
+                        }
                     }
                 }
             }
