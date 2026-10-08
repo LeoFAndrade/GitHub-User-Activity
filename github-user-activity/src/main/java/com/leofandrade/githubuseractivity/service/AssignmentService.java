@@ -1,5 +1,4 @@
 package com.leofandrade.githubuseractivity.service;
-
 import java.util.ArrayList;
 import com.leofandrade.githubuseractivity.dto.GitHubEventDto;
 
@@ -36,7 +35,6 @@ public class AssignmentService {
                         payload = keyResult[1];
                     }
                 }
-
             }
         }
         GitHubEventDto dto = new GitHubEventDto(type, repoName, payload);
