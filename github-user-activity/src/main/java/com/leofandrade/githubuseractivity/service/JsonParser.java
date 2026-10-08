@@ -3,8 +3,8 @@ package com.leofandrade.githubuseractivity.service;
 import java.util.ArrayList;
 
 public class JsonParser {
-    
-     public ArrayList<String> jsonToStringArray(String jsonArray) {
+
+    public ArrayList<String> jsonToStringArray(String jsonArray) {
         ArrayList<String> stringList = new ArrayList<>();
 
         if (jsonArray == null || jsonArray.trim().isEmpty()) {
@@ -14,6 +14,8 @@ public class JsonParser {
         String objectString = "";
         int depth = 0;
         int start = 0;
+
+        jsonArray = jsonArray.substring(1, jsonArray.length() - 1);
 
         for (int i = 0; i < jsonArray.length(); i++) {
             char actualChar = jsonArray.charAt(i);
