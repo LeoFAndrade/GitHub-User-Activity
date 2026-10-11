@@ -17,6 +17,10 @@ public class JsonParser {
 
         jsonArray = jsonArray.substring(1, jsonArray.length() - 1);
 
+        if (jsonArray.trim().isEmpty()) {
+            return stringList;
+        }
+
         for (int i = 0; i < jsonArray.length(); i++) {
             char actualChar = jsonArray.charAt(i);
 
