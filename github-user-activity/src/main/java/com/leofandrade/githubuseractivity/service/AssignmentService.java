@@ -26,7 +26,7 @@ public class AssignmentService {
             }
 
             if (keyValueObject[0].equals("payload")) {
-                String payloadValue = keyValueObject[1].replaceAll("[{}\\[\\]]", "").trim();
+                String payloadValue = keyValueObject[1].substring(1, keyValueObject[1].length() - 1);
 
                 if (!payloadValue.isEmpty()) {
                     for (String item : parser.stringObjectSeparator(payloadValue)) {
