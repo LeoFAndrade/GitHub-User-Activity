@@ -59,4 +59,29 @@ public class AssignmentService {
 
         return result;
     }
+
+    public String formatEvent(GitHubEventDto dto) {
+        String repo = dto.getRepoName();
+        String info = dto.getPayloadInfo();
+
+        switch (dto.getType()) {
+            case "PushEvent":
+                return "Pushed commits to " + repo;
+            case "WatchEvent":
+                return "Starred " + repo;
+            case "ForkEvent":
+                return "Forked " + repo;
+            case "PublicEvent":
+                return "Made " + repo + " public";
+            case "CreateEvent":
+                return "Created a new branch, tag or repository in " + repo;
+            case "IssuesEvent":
+                if (info.equals("opened")) {
+                    return "Opened a new issue in " + repo;
+                }
+                return "Updated an issue in " + repo + " (" + info + ")";
+            default:
+                return "Did " + dto.getType() + " in " + repo;
+        }
+    }
 }
