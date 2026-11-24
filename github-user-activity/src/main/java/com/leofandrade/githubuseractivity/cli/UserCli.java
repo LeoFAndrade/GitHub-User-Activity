@@ -17,8 +17,7 @@ public class UserCli {
     public void processArgs(String[] args) {
 
         if (args == null || args.length == 0) {
-            System.err.println("Error: No username provided.");
-            System.exit(1);
+            throw new IllegalArgumentException("Error: No username provided.");
         }
         this.githubUsername = args[0];
     }

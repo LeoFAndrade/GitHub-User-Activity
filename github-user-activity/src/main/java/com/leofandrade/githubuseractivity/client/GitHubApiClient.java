@@ -6,6 +6,8 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.time.Duration;
+import com.leofandrade.githubuseractivity.exception.UserNotFoundException;
+
 import java.io.IOException;
 
 public class GitHubApiClient {
@@ -24,6 +26,10 @@ public class GitHubApiClient {
                 .build();
 
         HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
+
+        if (response.statusCode() == 404) {
+            throw new UserNotFoundException("User: " + username + " not found.");
+        }
 
         if (response.statusCode() != 200) {
             throw new RuntimeException("Error fetching data from GitHub. HTTP Status: " + response.statusCode());
